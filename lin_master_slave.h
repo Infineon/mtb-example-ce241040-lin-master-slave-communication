@@ -75,7 +75,7 @@
     #define LIN_INTERRUPT_SLAVE lin_interrupts_1_IRQn
 #endif
 
-#define TEST_MODE (1u)
+#define TEST_MODE (1UL)
 
 /* Frame identifier */
 #define ID_MASTER_TX_RESPONSE_SLAVE_RX_RESPONSE  (0x11)

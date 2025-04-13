@@ -59,7 +59,7 @@ uint8_t slave_dst_data[LIN_DATA_LENGTH_MAX];
 * Summary:
 *  1. Initialize bsp.
 *  2. Configure source data.
-*  3. Initialize LIN.
+*  3. Initialize LIN interrupt handler.
 *  4. Send commands below each 500ms (LIN master only).
 *     STEP1: Master transmits header.
 *     STEP2: Master transmits header and response.
@@ -79,6 +79,7 @@ int main(void)
     __enable_irq();
 
     /* Initialize the device and board peripherals */
+    /* LIN initialization is done in the function  */
     result = cybsp_init();
     if (result != CY_RSLT_SUCCESS)
     {

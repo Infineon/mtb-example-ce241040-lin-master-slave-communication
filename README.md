@@ -4,12 +4,12 @@ This code example demonstrates how to communicate with LIN master and LIN slave 
 
 [View this README on GitHub.](https://github.com/Infineon/mtb-example-ce241040-lin-master-slave-communication)
 
-[Provide feedback on this code example.](https://cypress.co1.qualtrics.com/jfe/form/SV_1NTns53sK2yiljn?Q_EED=eyJVbmlxdWUgRG9jIElkIjoiQ0UyNDEwNDAiLCJTcGVjIE51bWJlciI6IjAwMi00MTA0MCIsIkRvYyBUaXRsZSI6IkxJTiBtYXN0ZXIgYW5kIHNsYXZlIGNvbW11bmljYXRpb24gd2l0aCBpbnRlcm5hbCBQSFkiLCJyaWQiOiJzYXRvcyIsIkRvYyB2ZXJzaW9uIjoiMS4wLjAiLCJEb2MgTGFuZ3VhZ2UiOiJFbmdsaXNoIiwiRG9jIERpdmlzaW9uIjoiTUNEIiwiRG9jIEJVIjoiQVVUTyIsIkRvYyBGYW1pbHkiOiJBVVRPIFBTT0MifQ==)
+[Provide feedback on this code example.](https://cypress.co1.qualtrics.com/jfe/form/SV_1NTns53sK2yiljn?Q_EED=eyJVbmlxdWUgRG9jIElkIjoiQ0UyNDEwNDAiLCJTcGVjIE51bWJlciI6IjAwMi00MTA0MCIsIkRvYyBUaXRsZSI6IkxJTiBtYXN0ZXIgYW5kIHNsYXZlIGNvbW11bmljYXRpb24gd2l0aCBpbnRlcm5hbCBQSFkiLCJyaWQiOiJzYXRvcyIsIkRvYyB2ZXJzaW9uIjoiMS4xLjAiLCJEb2MgTGFuZ3VhZ2UiOiJFbmdsaXNoIiwiRG9jIERpdmlzaW9uIjoiTUNEIiwiRG9jIEJVIjoiQVVUTyIsIkRvYyBGYW1pbHkiOiJBVVRPIFBTT0MifQ==)
 
 
 ## Requirements
 
-- [ModusToolbox&trade;](https://www.infineon.com/modustoolbox) v3.2 or later (tested with v3.2)
+- [ModusToolbox&trade;](https://www.infineon.com/modustoolbox) v3.4 or later (tested with v3.4)
 - Board support package (BSP) minimum required version: 3.1.0
 - Programming language: C
 - Associated parts:  [PSOC&trade; 4 HV MCU](https:///www.infineon.com/cms/en/product/microcontroller/32-bit-psoc-arm-cortex-microcontroller/32-bit-psoc-4-hv-arm-cortex-m0/)
@@ -36,20 +36,18 @@ For the external commnication by using internal LIN PHY, this example requires t
 
 The setup can be skipped if it's loop-back mode.
 
-**Table 1** shows additional components that need to be implemented for the master board and the slave mode and **Figure 1** shows where the components to be implemented on the circuit schematic.
+**Table 1** shows how additional components should be implemented on the master board and the slave board and **Figure 1** shows where the components to be implemented on the circuit schematic.
 
-After the implementation, both of the boards need to be connected by d-sub 9 cable.
+**Table 1. LIN master and slave board additional component implementation**
 
-Finally, at least one board must be connected to 12V power supply.
-
-**Table 1. LIN master and slave board additional  component implementation**
-
-| Master board            | Slave board    |
-| :---------------------- | :------------- |
-| Jumper on J19           | Jumper on J19  |
-| D-SUB-9 on J20          | D-SUB-9 on J20 |
-| PMEG4010ET,215 on D9    |                |
-| 1k ohm resistpr on R78  |                |
+| Components      | Master board                                   | Slave board             |
+| --------------- | ---------------------------------------------- | ----------------------- |
+| Jumper          | Implement on J19                               | Implement on J19        |
+| D-SUB 9         | Implement on J20                               | Implement on J20        |
+| D-SUB 9 cable   | Connect to slave board                         | Connect to master board |
+| PMEG4010ET,215  | Implement on D9                                | -                       |
+| 1k ohm resistor | Implement on R78                               | -                       |
+| 12V adapter     | Connect to DC jack <br> Turn SW4 to ADPTR side | -                       |
 
 <br>
 
@@ -285,11 +283,12 @@ LED      | CYBSP_LED4, CYBSP_LED6, CYBSP_LED7 | To indicate succeeded LIN commun
 
 Resources  | Links
 -----------|----------------------------------
-Application notes | AN0034 – Getting started with PSOC&trade; 4 HV MS MCUs in ModusToolbox&trade;
-Code examples| [Using ModusToolbox&trade;](https://github.com/Infineon/Code-Examples-for-ModusToolbox-Software) on GitHub
-Development kits | Select your kits from the [Evaluation board finder](https://www.infineon.com/cms/en/design-support/finder-selection-tools/product-finder/evaluation-board).
+Application notes | [AN0034 – Getting started with PSOC&trade; 4 HV MS MCUs in ModusToolbox&trade;](https://www.infineon.com/dgdl/?fileId=8ac78c8c93dda25b01954cc962534907)
+Device documents | [PSOC&trade; 4 HV MS documents](https://www.infineon.com/cms/en/product/microcontroller/32-bit-psoc-arm-cortex-microcontroller/32-bit-psoc-4-hv-arm-cortex-m0/psoc-4-hv-ms/#!documents)
+Code examples | [Using ModusToolbox&trade;](https://github.com/Infineon/Code-Examples-for-ModusToolbox-Software) on GitHub
+Development kits | Select your kits from the [Evaluation board finder](https://www.infineon.com/cms/en/design-support/finder-selection-tools/product-finder/evaluation-board)
 Libraries on GitHub | [mtb-pdl-cat2](https://github.com/Infineon/mtb-pdl-cat2) – PSOC&trade; 4 Peripheral Driver Library (PDL)
-Tools  | [ModusToolbox&trade;](https://www.infineon.com/modustoolbox) – ModusToolbox&trade; software is a collection of easy-to-use libraries and tools enabling rapid development with Infineon MCUs for applications ranging from wireless and cloud-connected systems, edge AI/ML, embedded sense and control, to wired USB connectivity using PSOC&trade; Industrial/IoT MCUs, AIROC&trade; Wi-Fi and Bluetooth&reg; connectivity devices, XMC&trade; Industrial MCUs, and EZ-USB&trade;/EZ-PD&trade; wired connectivity controllers. ModusToolbox&trade; incorporates a comprehensive set of BSPs, HAL, libraries, configuration tools, and provides support for industry-standard IDEs to fast-track your embedded application development.
+Tools  | [ModusToolbox&trade;](https://www.infineon.com/modustoolbox) – ModusToolbox&trade; software is a collection of easy-to-use libraries and tools enabling rapid development with Infineon MCUs for applications ranging from wireless and cloud-connected systems, edge AI/ML, embedded sense and control, to wired USB connectivity using PSOC&trade; Industrial/IoT MCUs, AIROC&trade; Wi-Fi and Bluetooth&reg; connectivity devices, XMC&trade; Industrial MCUs, and EZ-USB&trade;/EZ-PD&trade; wired connectivity controllers. ModusToolbox&trade; incorporates a comprehensive set of BSPs, HAL, libraries, configuration tools, and provides support for industry-standard IDEs to fast-track your embedded application development
 
 <br>
 
@@ -303,9 +302,10 @@ Infineon provides a wealth of data at [www.infineon.com](https://www.infineon.co
 
 Document title: *CE241040* – *LIN master and slave communication with internal PHY*
 
-Version | Description of change
-------- | ---------------------
-1.0.0   | New code example
+ Version | Description of change
+ ------- | ---------------------
+ 1.0.0   | New code example
+ 1.1.0   | Changed PSoC HV MS kit name to PSOC4 and updated README.md description.
 <br>
 
 
@@ -321,4 +321,4 @@ The Bluetooth&reg; word mark and logos are registered trademarks owned by Blueto
 <br>
 TO THE EXTENT PERMITTED BY APPLICABLE LAW, CYPRESS MAKES NO WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, WITH REGARD TO THIS DOCUMENT OR ANY SOFTWARE OR ACCOMPANYING HARDWARE, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.  No computing device can be absolutely secure.  Therefore, despite security measures implemented in Cypress hardware or software products, Cypress shall have no liability arising out of any security breach, such as unauthorized access to or use of a Cypress product. CYPRESS DOES NOT REPRESENT, WARRANT, OR GUARANTEE THAT CYPRESS PRODUCTS, OR SYSTEMS CREATED USING CYPRESS PRODUCTS, WILL BE FREE FROM CORRUPTION, ATTACK, VIRUSES, INTERFERENCE, HACKING, DATA LOSS OR THEFT, OR OTHER SECURITY INTRUSION (collectively, "Security Breach").  Cypress disclaims any liability relating to any Security Breach, and you shall and hereby do release Cypress from any claim, damage, or other liability arising from any Security Breach.  In addition, the products described in these materials may contain design defects or errors known as errata which may cause the product to deviate from published specifications. To the extent permitted by applicable law, Cypress reserves the right to make changes to this document without further notice. Cypress does not assume any liability arising out of the application or use of any product or circuit described in this document. Any information provided in this document, including any sample design information or programming code, is provided only for reference purposes.  It is the responsibility of the user of this document to properly design, program, and test the functionality and safety of any application made of this information and any resulting product.  "High-Risk Device" means any device or system whose failure could cause personal injury, death, or property damage.  Examples of High-Risk Devices are weapons, nuclear installations, surgical implants, and other medical devices.  "Critical Component" means any component of a High-Risk Device whose failure to perform can be reasonably expected to cause, directly or indirectly, the failure of the High-Risk Device, or to affect its safety or effectiveness.  Cypress is not liable, in whole or in part, and you shall and hereby do release Cypress from any claim, damage, or other liability arising from any use of a Cypress product as a Critical Component in a High-Risk Device. You shall indemnify and hold Cypress, including its affiliates, and its directors, officers, employees, agents, distributors, and assigns harmless from and against all claims, costs, damages, and expenses, arising out of any claim, including claims for product liability, personal injury or death, or property damage arising from any use of a Cypress product as a Critical Component in a High-Risk Device. Cypress products are not intended or authorized for use as a Critical Component in any High-Risk Device except to the limited extent that (i) Cypress's published data sheet for the product explicitly states Cypress has qualified the product for use in a specific High-Risk Device, or (ii) Cypress has given you advance written authorization to use the product as a Critical Component in the specific High-Risk Device and you have signed a separate indemnification agreement.
 <br>
-Cypress, the Cypress logo, and combinations thereof, ModusToolbox, PSoC, CAPSENSE, EZ-USB, F-RAM, and TRAVEO are trademarks or registered trademarks of Cypress or a subsidiary of Cypress in the United States or in other countries. For a more complete list of Cypress trademarks, visit www.infineon.com. Other names and brands may be claimed as property of their respective owners.
+Cypress, the Cypress logo, and combinations thereof, ModusToolbox, PSOC, CAPSENSE, EZ-USB, F-RAM, and TRAVEO are trademarks or registered trademarks of Cypress or a subsidiary of Cypress in the United States or in other countries. For a more complete list of Cypress trademarks, visit www.infineon.com. Other names and brands may be claimed as property of their respective owners.
