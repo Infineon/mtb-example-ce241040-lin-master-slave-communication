@@ -137,10 +137,12 @@ void lin_slave_isr(void)
             /* Clear Rx Header interrupt. */
             linStatus = Cy_LIN_ClearInterrupt(LIN_SLAVE_CHANNEL, LIN_INTR_RX_HEADER_DONE);
 
+#if defined COMPONENT_PSOC4HVMS64K || COMPONENT_PSOC4HVMS128K
             Cy_GPIO_Inv(CYBSP_LED4_PORT, CYBSP_LED4_PIN);
             Cy_SysLib_Delay(BLINK_TIME_MS);
             Cy_GPIO_Inv(CYBSP_LED4_PORT, CYBSP_LED4_PIN);
-
+#elif defined COMPONENT_PSOC4HVPA144K
+#endif
             if(ID_MASTER_TX_HEADER_SLAVE_RX_HEADER == id)
             {
                 lin_slave_set_command(LIN_CMD_RX_HEADER_RX_RESPONSE);
@@ -176,9 +178,15 @@ void lin_slave_isr(void)
 
             if(ID_MASTER_TX_RESPONSE_SLAVE_RX_RESPONSE == id)
             {
+#if defined COMPONENT_PSOC4HVMS64K || COMPONENT_PSOC4HVMS128K
                 Cy_GPIO_Inv(CYBSP_LED7_PORT, CYBSP_LED7_PIN);
                 Cy_SysLib_Delay(BLINK_TIME_MS);
                 Cy_GPIO_Inv(CYBSP_LED7_PORT, CYBSP_LED7_PIN);
+#elif defined COMPONENT_PSOC4HVPA144K
+                Cy_GPIO_Inv(CYBSP_LED6_PORT, CYBSP_LED6_PIN);
+                Cy_SysLib_Delay(BLINK_TIME_MS);
+                Cy_GPIO_Inv(CYBSP_LED6_PORT, CYBSP_LED6_PIN);
+#endif
 
                 lin_slave_set_command(LIN_CMD_RX_HEADER_RX_RESPONSE);
             }
@@ -190,9 +198,15 @@ void lin_slave_isr(void)
 
             if(ID_MASTER_RX_RESPONSE_SLAVE_TX_RESPONSE == id)
             {
+#if defined COMPONENT_PSOC4HVMS64K || COMPONENT_PSOC4HVMS128K
                 Cy_GPIO_Inv(CYBSP_LED6_PORT, CYBSP_LED6_PIN);
                 Cy_SysLib_Delay(BLINK_TIME_MS);
                 Cy_GPIO_Inv(CYBSP_LED6_PORT, CYBSP_LED6_PIN);
+#elif defined COMPONENT_PSOC4HVPA144K
+                Cy_GPIO_Inv(CYBSP_LED7_PORT, CYBSP_LED7_PIN);
+                Cy_SysLib_Delay(BLINK_TIME_MS);
+                Cy_GPIO_Inv(CYBSP_LED7_PORT, CYBSP_LED7_PIN);
+#endif
 
                 lin_slave_set_command(LIN_CMD_RX_HEADER_RX_RESPONSE);
             }
